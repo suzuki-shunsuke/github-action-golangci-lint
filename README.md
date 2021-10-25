@@ -15,7 +15,7 @@ GitHub Actions for golangci-lint.
   with:
     version: v0.7.9 # renovate: depName=suzuki-shunsuke/aqua
 
-- uses: suzuki-shunsuke/github-action-golangci-lint
+- uses: suzuki-shunsuke/github-action-golangci-lint@v0.1.0
 ```
 
 ## License
