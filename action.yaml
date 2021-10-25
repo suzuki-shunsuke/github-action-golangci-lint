@@ -1,0 +1,25 @@
+name: golangci-lint
+description: Run golangci-lint with reviewdog
+inputs:
+  github_token:
+    description: 'GitHub Access Token'
+    required: false
+    default: ${{ github.token }}
+  working_directory:
+    description: working directory
+    required: false
+    default: ""
+runs:
+  using: composite
+  steps:
+    - run: |
+        golangci-lint run --out-format checkstyle |
+          reviewdog -f=checkstyle \
+            -name="golangci-lint" \
+            -reporter=github-pr-review \
+            -level=warning \
+            -fail-on-error=1
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      env:
+        REVIEWDOG_GITHUB_API_TOKEN: ${{ inputs.github_token }}
