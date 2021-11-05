@@ -16,6 +16,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: int128/aqua-action@v1
         with:
-          version: v0.7.11 # renovate: depName=suzuki-shunsuke/aqua
+          version: v0.7.12 # renovate: depName=suzuki-shunsuke/aqua
 
       - uses: ./
