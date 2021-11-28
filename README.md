@@ -13,7 +13,7 @@ GitHub Actions for golangci-lint.
 # Install golangci-lint and reviewdog with aqua
 - uses: int128/aqua-action@v1
   with:
-    version: v0.7.9 # renovate: depName=suzuki-shunsuke/aqua
+    version: v0.8.0 # renovate: depName=aquaproj/aqua
 
 - uses: suzuki-shunsuke/github-action-golangci-lint@v0.1.0
 ```
