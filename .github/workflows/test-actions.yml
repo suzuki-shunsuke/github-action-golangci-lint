@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: int128/aqua-action@v1
+      - uses: aquaproj/aqua-installer@v0.4.0
         with:
-          version: v0.8.7 # renovate: depName=aquaproj/aqua
+          aqua_version: v0.8.7
 
       - uses: ./
