@@ -12,20 +12,40 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: 'Link to Action: https://github.com/suzuki-shunsuke/github-action-golangci-lint'
+      run: echo "::debug::Link to Action https://github.com/suzuki-shunsuke/github-action-golangci-lint"
+      shell: bash
+
     - run: |
-        if [ "$EVENT_NAME" = "pull_request" ]; then
-          golangci-lint run --out-format checkstyle |
-            reviewdog -f=checkstyle \
-              -name="golangci-lint" \
-              -reporter=github-pr-review \
-              -level=warning \
-              -filter-mode=nofilter \
-              -fail-on-error=1
-        else
-          golangci-lint run
-        fi
+        echo "::error ::github_token is required. https://github.com/suzuki-shunsuke/github-action-golangci-lint"
+        exit 1
+      shell: bash
+      if: inputs.github_token == ''
+
+    - name: check golangci-lint is installed
+      run: golangci-lint version
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+    - name: check reviewdog is installed
+      run: reviewdog -version
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+
+    - name: golangci-lint
       shell: bash
       working-directory: ${{ inputs.working_directory }}
       env:
         REVIEWDOG_GITHUB_API_TOKEN: ${{ inputs.github_token }}
-        EVENT_NAME: ${{ github.event_name }}
+      run: |
+        reporter=github-check
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          reporter=github-pr-review
+        fi
+
+        golangci-lint run --out-format checkstyle |
+          reviewdog -f=checkstyle \
+            -name="golangci-lint" \
+            -filter-mode=nofilter \
+            -reporter="$reporter" \
+            -level=warning \
+            -fail-on-error=1
