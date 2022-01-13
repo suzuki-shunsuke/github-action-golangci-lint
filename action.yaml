@@ -19,6 +19,7 @@ runs:
               -name="golangci-lint" \
               -reporter=github-pr-review \
               -level=warning \
+              -filter-mode=nofilter \
               -fail-on-error=1
         else
           golangci-lint run
