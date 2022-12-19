@@ -22,14 +22,15 @@ This GitHub Actions does **not** install golangci-lint, so we can install them o
 ## Example
 
 ```yaml
-- uses: suzuki-shunsuke/github-action-golangci-lint@v0.1.1
+- uses: suzuki-shunsuke/github-action-golangci-lint@v0.1.4
 ```
 
 ```yaml
-- uses: suzuki-shunsuke/github-action-golangci-lint@v0.1.1
+- uses: suzuki-shunsuke/github-action-golangci-lint@v0.1.4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     working_directory: foo
+    timeout: 120s
 ```
 
 ## Inputs
@@ -44,6 +45,7 @@ name | default value | description
 --- | --- | ---
 github_token | `github.token` | GitHub Access Token
 working_directory | "" (current directory) | Woring Directory
+timeout | "" (golangci-lint default timeout) | golangci-lint's `--timeout` option
 
 ## Outputs
 
