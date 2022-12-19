@@ -47,7 +47,7 @@ runs:
         fi
         opts=""
         if [ -n "$INPUT_TIMEOUT" ]; then
-          opts=--timeout "$INPUT_TIMEOUT"
+          opts="--timeout $INPUT_TIMEOUT"
         fi
 
         golangci-lint run --out-format checkstyle $opts |
