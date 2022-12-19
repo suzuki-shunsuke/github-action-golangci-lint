@@ -20,3 +20,8 @@ jobs:
       - uses: ./
         with:
           working_directory: tests
+
+      - uses: ./
+        with:
+          working_directory: tests
+          timeout: 30s

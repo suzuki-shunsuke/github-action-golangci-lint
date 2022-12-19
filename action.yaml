@@ -9,6 +9,9 @@ inputs:
     description: working directory
     required: false
     default: ""
+  timeout:
+    required: false
+    default: ""
 runs:
   using: composite
   steps:
@@ -36,13 +39,18 @@ runs:
       working-directory: ${{ inputs.working_directory }}
       env:
         REVIEWDOG_GITHUB_API_TOKEN: ${{ inputs.github_token }}
+        INPUT_TIMEOUT: ${{ inputs.timeout }}
       run: |
         reporter=github-check
         if [ "${{ github.event_name }}" = "pull_request" ]; then
           reporter=github-pr-review
         fi
+        opts=""
+        if [ -n "$INPUT_TIMEOUT" ]; then
+          opts="--timeout $INPUT_TIMEOUT"
+        fi
 
-        golangci-lint run --out-format checkstyle |
+        golangci-lint run --out-format checkstyle $opts |
           reviewdog -f=checkstyle \
             -name="golangci-lint" \
             -filter-mode=nofilter \
