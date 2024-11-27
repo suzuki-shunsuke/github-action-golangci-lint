@@ -9,8 +9,6 @@ jobs:
     outputs:
       update-aqua-checksums: ${{steps.changes.outputs.update-aqua-checksums}}
       renovate-config-validator: ${{steps.changes.outputs.renovate-config-validator}}
-      ghalint: ${{steps.changes.outputs.ghalint}}
-      shellcheck: ${{steps.changes.outputs.shellcheck}}
     runs-on: ubuntu-latest
     permissions: {}
     steps:
