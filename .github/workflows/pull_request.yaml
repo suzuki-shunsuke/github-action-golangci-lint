@@ -28,9 +28,6 @@ jobs:
               - renovate.json5
               - .github/workflows/pull_request.yaml
               - .github/workflows/wc-renovate-config-validator.yaml
-            ghalint:
-              - .github/workflows/*.yaml
-              - aqua/ghalint.yaml
 
   status-check:
     # This job is used for main branch's branch protection rule's status check.
