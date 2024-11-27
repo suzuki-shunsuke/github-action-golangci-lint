@@ -2,25 +2,20 @@ name: actionlint
 
 on:
   pull_request:
-    branches:
-    - main
     paths:
-    - .github/**
-    - aqua/actionlint.yaml
-  push:
-    branches:
-    - main
-    paths:
-    - .github/**
-    - aqua/actionlint.yaml
+      - .github/**
+      - aqua.yaml
 
 jobs:
   test:
-    timeout-minutes: 30
+    timeout-minutes: 10
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
-    - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
-    - uses: aquaproj/aqua-installer@f13c5d2f0357708d85477aabe50fd3f725528745 # v3.1.0
-      with:
-        aqua_version: v2.38.0
-    - uses: suzuki-shunsuke/github-action-actionlint@4f0298e8f8b13fffbdc13207463d65e92205ad0c # v0.1.5
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
+      - uses: aquaproj/aqua-installer@f13c5d2f0357708d85477aabe50fd3f725528745 # v3.1.0
+        with:
+          aqua_version: v2.38.0
+      - uses: suzuki-shunsuke/github-action-actionlint@4f0298e8f8b13fffbdc13207463d65e92205ad0c # v0.1.5
