@@ -45,12 +45,14 @@ runs:
         if [ "${{ github.event_name }}" = "pull_request" ]; then
           reporter=github-pr-review
         fi
-        opts=""
-        if [ -n "$INPUT_TIMEOUT" ]; then
-          opts="--timeout $INPUT_TIMEOUT"
+        opts="--out-format checkstyle"
+        if golangci-lint run --help | grep "output.checkstyle.path"; then
+          opts="--output.checkstyle.path stdout"
         fi
-
-        golangci-lint run --out-format checkstyle $opts |
+        if [ -n "$INPUT_TIMEOUT" ]; then
+          opts="$opts --timeout $INPUT_TIMEOUT"
+        fi
+        golangci-lint run $opts |
           reviewdog -f=checkstyle \
             -name="golangci-lint" \
             -filter-mode=nofilter \
