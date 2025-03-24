@@ -46,7 +46,7 @@ runs:
           reporter=github-pr-review
         fi
         opts="--out-format checkstyle"
-        if golangci-lint run --help | grep "output.checkstyle.path"; then
+        if golangci-lint run --help | grep -q "output.checkstyle.path"; then
           opts="--output.checkstyle.path stdout"
         fi
         if [ -n "$INPUT_TIMEOUT" ]; then
