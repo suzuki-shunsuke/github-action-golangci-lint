@@ -1,0 +1,10 @@
+# aqua - CLI Version Manager
+# https://github.com/aquaproj/aqua
+registries:
+  - type: standard
+    ref: v4.332.0 # renovate: depName=aquaproj/aqua-registry
+checksum:
+  enabled: true
+  require_checksum: true
+packages:
+  - import: imports/*.yaml
