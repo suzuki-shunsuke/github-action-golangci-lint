@@ -1,0 +1,3 @@
+packages:
+  - name: golangci/golangci-lint
+    version: v1.64.8

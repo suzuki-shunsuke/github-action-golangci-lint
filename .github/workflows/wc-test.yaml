@@ -18,9 +18,18 @@ jobs:
 
       - uses: ./
         with:
-          working_directory: tests
+          working_directory: tests/v1
 
       - uses: ./
         with:
-          working_directory: tests
+          working_directory: tests/v1
+          timeout: 30s
+
+      - uses: ./
+        with:
+          working_directory: tests/v2
+
+      - uses: ./
+        with:
+          working_directory: tests/v2
           timeout: 30s
