@@ -44,7 +44,7 @@ Nothing.
 name | default value | description
 --- | --- | ---
 github_token | `github.token` | GitHub Access Token
-working_directory | "" (current directory) | Woring Directory
+working_directory | "" (current directory) | Working Directory
 timeout | "" (golangci-lint default timeout) | golangci-lint's `--timeout` option
 
 ## Outputs
