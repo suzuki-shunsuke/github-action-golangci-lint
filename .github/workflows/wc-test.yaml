@@ -9,10 +9,10 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
+      - uses: actions/checkout@v3.3.0
         with:
           persist-credentials: false
-      - uses: aquaproj/aqua-installer@611554c6f0137ba41c8dd15aca8bee82504ea461 # v4.1.1
+      - uses: aquaproj/aqua-installer@v4.1.1
         with:
           aqua_version: v2.66.0
           working_directory: tests/v2
